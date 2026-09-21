@@ -1,7 +1,7 @@
 
+from torch.utils.tensorboard import SummaryWriter
 import torch
 from tqdm.auto import tqdm
-
 
 def accuracy_fn(y_pred_label, y_true):
     correct = torch.eq(y_pred_label, y_true).sum().item()
@@ -61,7 +61,8 @@ def train(model: torch.nn.Module,
           optimizer: torch.optim.Optimizer,
           loss_fn: torch.nn.Module,
           epochs: int,
-          device: torch.device):
+          device: torch.device,
+          writer: SummaryWriter = None):
 
     results = {'train_loss': [], 
                'train_acc': [], 
@@ -85,5 +86,12 @@ def train(model: torch.nn.Module,
         results['train_acc'].append(train_acc)
         results['test_loss'].append(test_loss)
         results['test_acc'].append(test_acc)
+
+        if writer:
+            writer.add_scalars("Loss", {"train": train_loss, "test": test_loss}, global_step=epoch)
+            writer.add_scalars("Accuracy", {"train": train_acc, "test": test_acc}, global_step=epoch)
+
+    if writer:
+        writer.close()
 
     return results
