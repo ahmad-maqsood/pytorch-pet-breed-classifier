@@ -2,6 +2,10 @@
 import torch
 from pathlib import Path
 
+import os
+from datetime import datetime
+from torch.utils.tensorboard import SummaryWriter
+
 def save_model(model: torch.nn.Module,
                model_name: str,
                target_dir: str):
@@ -24,3 +28,9 @@ def load_model(model: torch.nn.Module,
     model.to(device)
     model.eval()
     return model
+
+def create_writer(experiment_name: str,
+                  model_name: str):
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M')
+    log_dir = os.path.join('runs', timestamp, experiment_name, model_name)
+    return SummaryWriter(log_dir=log_dir)
