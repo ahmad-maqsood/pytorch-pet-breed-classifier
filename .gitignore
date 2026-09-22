@@ -1,5 +1,5 @@
 
 # Project data and model weights
 data/
-*.pth
-*.pt
+models/*
+!models/resnet_50_unfrozen_layer4_and_manual_transform.pth
