@@ -1,1 +1,0 @@
-The models were ignored by .gitignore. You need to re-run the notebook 3(fine_tuning) to get the models' files.
