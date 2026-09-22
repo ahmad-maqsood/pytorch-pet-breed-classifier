@@ -25,7 +25,7 @@ def load_model():
     for param in model.parameters():
         param.requires_grad = False
     model.fc = nn.Linear(in_features=2048, out_features=37)
-    model.load_state_dict(torch.load("resnet_50_unfrozen_layer4_and_manual_transform.pth", map_location="cpu"))
+    model.load_state_dict(torch.load("models/resnet_50_unfrozen_layer4_and_manual_transform.pth", map_location="cpu"))
     model.eval()
     return model, transform
 
