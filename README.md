@@ -33,7 +33,7 @@ Starting from the frozen-backbone ResNet-50 (91.22% test accuracy), the final re
 | Setup | Test accuracy | Train accuracy | Train/test gap |
 |---|---|---|---|
 | Frozen backbone (baseline) | 91.22% | 99.48% | ~8.3 pts |
-| Unfrozen `layer4`, no augmentation | poor (bug: single learning rate used instead of two-group; not a valid result) | — | — |
+| Unfrozen `layer4`, no augmentation | 82.36% | 94.32% | ~11.9 pts |
 | **Unfrozen `layer4` + augmentation (final model)** | **90.77%** | 91.47% | **~0.7 pts** |
 
 The final model's test accuracy is essentially unchanged from the frozen baseline, but the train/test gap shrank from ~8 points to under 1, indicating substantially less overfitting and likely better generalization to genuinely new photos. Test accuracy peaked slightly higher (91.93%) at epoch 2 before settling at 90.77% by epoch 5, suggesting a small amount of overfitting was still creeping back in by the final epoch.
